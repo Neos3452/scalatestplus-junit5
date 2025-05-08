@@ -107,7 +107,11 @@ class ScalaTestEngine extends org.junit.platform.engine.TestEngine {
               .stream()
               .flatMap(addToParentFunction(context))
               .collect(Collectors.toSet())
-          Resolution.matches(matches)
+          if (matches.isEmpty) {
+            Resolution.unresolved()
+          } else {
+            Resolution.matches(matches)
+          }
         }
 
         override def resolve(selector: PackageSelector, context: SelectorResolver.Context): SelectorResolver.Resolution = {
@@ -116,7 +120,11 @@ class ScalaTestEngine extends org.junit.platform.engine.TestEngine {
               .stream()
               .flatMap(addToParentFunction(context))
               .collect(Collectors.toSet())
-          Resolution.matches(matches)
+          if (matches.isEmpty) {
+            Resolution.unresolved()
+          } else {
+            Resolution.matches(matches)
+          }
         }
 
         override def resolve(selector: ModuleSelector, context: SelectorResolver.Context): SelectorResolver.Resolution = {
@@ -125,7 +133,11 @@ class ScalaTestEngine extends org.junit.platform.engine.TestEngine {
               .stream()
               .flatMap(addToParentFunction(context))
               .collect(Collectors.toSet())
-          Resolution.matches(matches)
+          if (matches.isEmpty) {
+            Resolution.unresolved()
+          } else {
+            Resolution.matches(matches)
+          }
         }
 
         override def resolve(selector: ClassSelector, context: SelectorResolver.Context): SelectorResolver.Resolution = {
